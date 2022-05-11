@@ -1,5 +1,5 @@
 import express from 'express';
-import resizer from '../../utilities/resizer';
+import resizer from '../../utilities/resizerMiddleware';
 
 const images = express.Router();
 
