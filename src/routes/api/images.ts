@@ -5,6 +5,6 @@ const images = express.Router();
 
 images.use(resizer);
 
-images.get('/', (req, res) => {});
+images.get('/');
 
 export default images;

@@ -4,7 +4,7 @@ import resize from './resizer';
 const resizerMiddleware = async (
   req: express.Request,
   res: express.Response,
-  next: Function
+  next: express.NextFunction
 ) => {
   const filename = req.query.filename || null;
   const newWidth = req.query.width || 0;
