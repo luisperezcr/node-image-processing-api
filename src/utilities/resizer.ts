@@ -1,6 +1,5 @@
 import express from 'express';
 import sharp from 'sharp';
-import path from 'path';
 
 const resizer = async(req: express.Request, res: express.Response, next: Function) => {
     const filename = req.query.filename || null;
