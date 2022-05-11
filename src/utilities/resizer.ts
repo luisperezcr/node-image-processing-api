@@ -9,7 +9,7 @@ import { isInCache, saveToCache } from './cache';
  * @returns - Promise<string> - New resized image name to render
  */
 const resize = async (
-  filename: any,
+  filename: unknown,
   width: number,
   height: number
 ): Promise<string> => {
