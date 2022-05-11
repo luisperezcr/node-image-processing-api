@@ -5,7 +5,7 @@ import { promises as fs } from 'fs';
  * @returns Promise<string[]> - An array of cached images
  */
 const cleanUpArray = async(images: string): Promise<string[]> => {
-  const cachedImages = images.split(',').filter((item: string) => item !== '');
+  const cachedImages = images.split('|').filter((item: string) => item !== '');
   return cachedImages;
 };
 
@@ -16,7 +16,7 @@ const cleanUpArray = async(images: string): Promise<string[]> => {
  */
 export const saveToCache = async(name: string): Promise<any> => {
   const file = await fs.open('cache/resizedImages.txt', 'a+');
-  await file.write(`${name},`);
+  await file.write(`${name}|`);
   return file.close();
 };
 
