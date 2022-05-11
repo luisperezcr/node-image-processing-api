@@ -1,9 +1,11 @@
 import express from 'express';
-import sharp from 'sharp';
-import { isInCache, saveToCache } from './cache';
 import resize from './resizer';
 
-const resizerMiddleware = async(req: express.Request, res: express.Response, next: Function) => {
+const resizerMiddleware = async (
+  req: express.Request,
+  res: express.Response,
+  next: Function
+) => {
   const filename = req.query.filename || null;
   const newWidth = req.query.width || 0;
   const newHeight = req.query.height || 0;
@@ -15,7 +17,7 @@ const resizerMiddleware = async(req: express.Request, res: express.Response, nex
       res.sendFile(result, { root: './' });
     }
   } catch (error) {
-      res.status(404).send(`Sorry, we couldn't find an image with that name.`);
+    res.status(404).send(`Sorry, we couldn't find an image with that name.`);
   }
 
   next();
