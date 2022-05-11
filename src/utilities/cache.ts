@@ -14,7 +14,7 @@ const cleanUpArray = async (images: string): Promise<string[]> => {
  * @param name - Name of image to cache
  * @returns Promise<any> - Result of closing the file
  */
-export const saveToCache = async (name: string): Promise<any> => {
+export const saveToCache = async (name: string): Promise<unknown> => {
   const file = await fs.open('cache/resizedImages.txt', 'a+');
   await file.write(`${name}|`);
   return file.close();
