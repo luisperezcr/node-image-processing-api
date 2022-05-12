@@ -5,7 +5,7 @@ const app = express();
 const port = 3000;
 
 // Apply routes to the express app
-app.use('/api', routes, (req, res) => res.sendStatus(200));
+app.use('/api', routes);
 
 /**
  * Start server
