@@ -4,7 +4,7 @@ import { promises as fs } from 'fs';
  * Clean up a file to return a clean (without ',') array of cached files
  * @returns Promise<string[]> - An array of cached images
  */
-const cleanUpArray = async (images: string): Promise<string[]> => {
+export const cleanUpArray = async (images: string): Promise<string[]> => {
   const cachedImages = images.split('|').filter((item: string) => item !== '');
   return cachedImages;
 };
@@ -14,10 +14,15 @@ const cleanUpArray = async (images: string): Promise<string[]> => {
  * @param name - Name of image to cache
  * @returns Promise<any> - Result of closing the file
  */
-export const saveToCache = async (name: string): Promise<unknown> => {
-  const file = await fs.open('cache/resizedImages.txt', 'a+');
-  await file.write(`${name}|`);
-  return file.close();
+export const saveToCache = async (name: string): Promise<boolean> => {
+  try {
+    const file = await fs.open('cache/resizedImages.txt', 'a+');
+    await file.write(`${name}|`);
+    file.close();
+    return true;
+  } catch {
+    return false;
+  }
 };
 
 /**
@@ -26,9 +31,13 @@ export const saveToCache = async (name: string): Promise<unknown> => {
  * @returns - Promise<boolean> - Result if the image was found in cache
  */
 export const isInCache = async (name: string): Promise<boolean> => {
-  const file = await fs.open('cache/resizedImages.txt', 'a+');
-  const cache = await fs.readFile(file, 'utf-8');
-  const cachedImages = await cleanUpArray(cache);
-  await file.close();
-  return !!cachedImages.find((image: string) => image === name);
+  try {
+    const file = await fs.open('cache/resizedImages.txt', 'a+');
+    const cache = await fs.readFile(file, 'utf-8');
+    const cachedImages = await cleanUpArray(cache);
+    await file.close();
+    return !!cachedImages.find((image: string) => image === name);
+  } catch {
+    return false;
+  }
 };
