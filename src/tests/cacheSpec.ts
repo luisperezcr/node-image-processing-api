@@ -9,7 +9,7 @@ describe('Test cache utility', () => {
     images = 'image1.jpg|image2.jpg|';
 
     mock({
-      'cache': {
+      cache: {
         'resizedImages.txt': 'image1.jpg|image2.jpg|'
       }
     });
@@ -29,13 +29,13 @@ describe('Test cache utility', () => {
     expect(result).toBeTruthy();
   });
 
-  it('should check and return true if image exists in cache', async() => {
+  it('should check and return true if image exists in cache', async () => {
     spyOn(fs, 'readFile').and.resolveTo('image1.jpg|image2.jpg|');
     const result = await isInCache('image1.jpg');
     expect(result).toBeTruthy();
   });
 
-  it('should check and return false if image name is not in cache', async() => {
+  it('should check and return false if image name is not in cache', async () => {
     spyOn(fs, 'readFile').and.resolveTo('image1.jpg|image2.jpg|');
     const result = await isInCache('image4.jpg');
     expect(result).toBeFalsy();
