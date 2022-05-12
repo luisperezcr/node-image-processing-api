@@ -1,6 +1,6 @@
 # Image Processing API
 
-This is a **NodeJS** API to resize images created for project: `Image Processing API` in the `FullStack JavaScript Developer Nanodegree` by [Udacity](udacity.com).
+This is a **NodeJS** API to resize images created for project: `Image Processing API` in the `FullStack JavaScript Developer Nanodegree` by [Udacity](http://www.udacity.com).
 
 ---
 
