@@ -31,7 +31,7 @@ After running `npm run start` the app will be available on `localhost:3000`. To 
 
 `<FILENAME>` can be any image inside the `images/full` folder and feel free to add your own images but make sure they are `.jpg` format.
 
-Also, while hitting the endpoint just use the `filename` without the `.jpg`.
+Also, while hitting the endpoint just use the `filename` without the `.jpg`. For example: `localhost:3000/api/images?filename=santamonica&width=500&height=500`
 
 ---
 
