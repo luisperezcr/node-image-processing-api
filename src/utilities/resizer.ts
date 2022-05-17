@@ -1,5 +1,16 @@
 import sharp from 'sharp';
+import { promises as fs, existsSync } from 'fs';
 import { isInCache, saveToCache } from './cache';
+
+/**
+ * Check if a folder exists, if not, will create it
+ * @param folder - Folder name to create if doesn't exist
+ */
+const checkThumbFolder = async (folder: string) => {
+  if (!existsSync(folder)) {
+    await fs.mkdir(folder);
+  }
+};
 
 /**
  * Performs image resize
@@ -24,6 +35,8 @@ const resize = async (
   if (isCached) {
     return `${pathToThumb}/${thumbImage}`;
   } else {
+    await checkThumbFolder(pathToThumb);
+
     await sharp(`${pathToFull}/${fullImage}`)
       .resize(+width, +height)
       .toFile(`${pathToThumb}/${thumbImage}`);
