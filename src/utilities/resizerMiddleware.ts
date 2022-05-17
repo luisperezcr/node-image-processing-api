@@ -1,14 +1,22 @@
-import express from 'express';
+import { Request, Response, NextFunction } from 'express';
 import resize from './resizer';
 
 const resizerMiddleware = async (
-  req: express.Request,
-  res: express.Response,
-  next: express.NextFunction
+  req: Request,
+  res: Response,
+  next: NextFunction
 ) => {
-  const filename = req.query.filename || null;
-  const newWidth = req.query.width || 0;
-  const newHeight = req.query.height || 0;
+  const filename = req.query.filename;
+  const newWidth = req.query.width;
+  const newHeight = req.query.height;
+
+  if (!filename) {
+    return res.send(`An error has ocurred: Invalid filename, please enter a valid image name.`);
+  } else if (!newWidth || isNaN(Number(newWidth))) {
+    return res.send(`An error has ocurred: Invalid width, please enter a valid value for width.`);
+  } else if (!newHeight || isNaN(Number(newHeight))) {
+    return res.send(`An error has ocurred: Invalid height, please enter a valid value for height.`);
+  }
 
   try {
     if (filename && newWidth && newHeight) {
