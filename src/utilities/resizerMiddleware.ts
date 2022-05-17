@@ -22,7 +22,7 @@ const resizerMiddleware = async (
     if (filename && newWidth && newHeight) {
       // If all parameters provided, perform resize
       const result = await resize(filename, +newWidth, +newHeight);
-      res.sendFile(result, { root: './' });
+      res.status(200).sendFile(result, { root: './' });
     }
   } catch (error) {
     res.status(404).send(`Sorry, we couldn't find an image with that name.`);
